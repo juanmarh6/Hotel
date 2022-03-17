@@ -21,12 +21,13 @@ public class Prueba  {
                     hacerResereva(r1);
                     break;
                 case 2:
-                    System.out.println("Introduce la planta y habitación donde tienes la reserva: ");
-                    int [] coordenadas = new int[2];
-                    coordenadas[0] = sc.nextInt() -1;
-                    coordenadas[1] = sc.nextInt() - 1;
-                    r1.anulaReserva(coordenadas);
-                    System.out.println(r1.muestraPantalla());
+                    System.out.println("¿Qué tipo de hab. es la que quieres anular?: ");
+                    int tipo=sc.nextInt();
+                    System.out.println("¿Cuántas hab. quieres anular?: ");
+                    int n=sc.nextInt();
+                    System.out.println("¿Cuál es tu DNI?: ");
+                    int dni=sc.nextInt();
+                    r1.anulaReserva(dni,tipo,n);
                     Serializar(r1);
                     break;
                 case 3:
@@ -40,9 +41,11 @@ public class Prueba  {
                     System.out.println(r1.verDatosCliente(c));
                     break;
                 case 5:
-                    System.out.println("Introduce el DNI de la reserva: ");
+                    System.out.println("Introduce tu DNI: ");
                     int d = sc.nextInt();
-                    int [] s = r1.buscarReserva(d);
+                    System.out.println("¿De qué tipo es la habitación que quieres buscar?");
+                    int tp=sc.nextInt();
+                    int [] s = r1.buscarReserva(d, tp);
                     if (s[0] != -1)
                         System.out.println("Tu reserva está en la planta " + (s[0]+1) + " habitación " + (s[1]+1) + ".");
                     else
@@ -112,12 +115,13 @@ public class Prueba  {
             String baja = sc.nextLine();
             System.out.println("Régimen: ");
             String Régimen = sc.nextLine();
-            r1.habitaciones[coordenadas[0]][coordenadas[1]] = new Cliente();
-            r1.almacenaReserva(coordenadas, nombre, apellidos, dni, tel, card, alta, baja, Régimen);
+            Cliente cl= new Cliente(nombre,apellidos,dni,tel,card,alta,baja,Régimen);
+            r1.almacenaReserva(coordenadas,cl);
         }
         System.out.println(r1.muestraPantalla());
         Serializar(r1);
     }
 }
+
 
 
