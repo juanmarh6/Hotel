@@ -19,6 +19,7 @@ public class thirdFrame extends JFrame{
     private JLabel lbTipo;
     private JTextField tfTipo;
     private JButton btMostrar;
+    private JTextArea txTipo;
     protected Registro H;
 
     thirdFrame(){
